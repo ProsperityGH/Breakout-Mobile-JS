@@ -9,10 +9,22 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #293E6A;
-  }
+}
   
+.phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 330px;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.255);
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
 canvas {
-    background-color: whitesmoke;
+    background-color: white;
     display: block;
     margin: 0 auto;
     border-radius: 15px;

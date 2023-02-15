@@ -1,6 +1,8 @@
 var canvas = document.getElementById("breakoutCanvas");
 var ctx = canvas.getContext("2d");
 
+const phoneDiv = document.querySelector(".phone");
+
 var ballRadius = 10;
 
 var x = canvas.width / 2;
@@ -25,7 +27,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
 var score = 0;
-var lives = 3
+var lives = 99;
 
 var bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
@@ -33,6 +35,10 @@ for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
         bricks[c][r] = { x: 0, y: 0, status: 1};
     }
+}
+
+if (window.innerWidth < 331) {
+    phoneDiv.classList.remove("phone");
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -43,7 +49,7 @@ window.addEventListener("devicemotion", motionMoveHandler, false);
 function motionMoveHandler(event) {
     const accX = event.accelerationIncludingGravity.x || 0;
     const direction = accX > 0 ? -1 : 1;
-    const speed = Math.abs(accX / 20);
+    const speed = Math.abs(accX / 100);
     const delta = direction * speed * (canvas.width / 2 - paddleWidth);
   
     paddleX += delta;
