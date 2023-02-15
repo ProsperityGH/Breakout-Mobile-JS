@@ -38,6 +38,17 @@ for (let c = 0; c < brickColumnCount; c++) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
+window.addEventListener("devicemotion", motionMoveHandler, false);
+
+function motionMoveHandler(event) {
+    const accX = event.accelerationIncludingGravity.x || 0;
+    const direction = accX > 0 ? -1 : 1;
+    const speed = Math.abs(accX / 20);
+    const delta = direction * speed * (canvas.width / 2 - paddleWidth);
+  
+    paddleX += delta;
+    paddleX = Math.max(0, Math.min(canvas.width - paddleWidth, paddleX));
+}
 
 function mouseMoveHandler(e) {
     const relativeX = e.clientX - canvas.offsetLeft;
