@@ -3,6 +3,10 @@ var ctx = canvas.getContext("2d");
 
 const phoneDiv = document.querySelector(".phone");
 
+const win = new Audio('../assets/mp3/win.mp3');
+const bounce = new Audio('../assets/mp3/bounce.wav');
+const gameover = new Audio('../assets/mp3/game_over.wav');
+
 var ballRadius = 10;
 
 var x = canvas.width / 2;
@@ -94,8 +98,10 @@ function collisionDetection() {
                     dy = -dy;
                     b.status = 0;
                     score++;
+                    bounce.play();
 
                     if (score === brickRowCount * brickColumnCount) {
+                        win.play();
                         alert("YOU WIN, CONGRATULATIONS!!!!");
                         document.location.reload();
                         clearInterval(interval);
@@ -162,18 +168,22 @@ function draw() {
     collisionDetection();
     
     if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        bounce.play();
         dx = -dx;
     }
     if (y + dy < ballRadius) {
+        bounce.play();
         dy = -dy;
     }
     else if (y + dy > canvas.height-ballRadius) {
         if (x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
+            bounce.play();
         }
         else {
             lives--;
             if (!lives) {
+              gameover.play();
               alert("GAME OVER!!! Your score: " + score);
               document.location.reload();
             }
