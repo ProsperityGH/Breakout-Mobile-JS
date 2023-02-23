@@ -33,6 +33,18 @@ var brickOffsetLeft = 30;
 var score = 0;
 var lives = 99;
 
+var paused = false;
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+    paused = true;
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+    paused = false;
+}
+
 var bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
@@ -166,6 +178,11 @@ function draw() {
     drawScore();
     drawLives();
     collisionDetection();
+
+    if (paused) {
+        requestAnimationFrame(draw);
+        return;
+    }
     
     if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         bounce.play();
