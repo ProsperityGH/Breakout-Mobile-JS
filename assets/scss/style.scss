@@ -84,3 +84,15 @@ button {
     outline: none;
     cursor: pointer;
 }
+@media only screen and (max-width: 400px){
+    // .phone {
+    //     height: 0px;
+    // }
+
+    button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+}
