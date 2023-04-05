@@ -102,25 +102,59 @@ function collisionDetection() {
         for (let r = 0; r < brickRowCount; r++) {
             var b = bricks[c][r];
             if (b.status === 1) {
-                if (x > b.x &&
-                    x < b.x + brickWidth &&
-                    y > b.y &&
-                    y < b.y + brickHeight
-                ) {
+                if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                     dy = -dy;
                     b.status = 0;
                     score++;
                     bounce.play();
-
                     if (score === brickRowCount * brickColumnCount) {
                         win.play();
                         alert("YOU WIN, CONGRATULATIONS!!!!");
                         document.location.reload();
                         clearInterval(interval);
-                    }    
+                    }
                 }
             }
         }
+    }
+
+    if (x > paddleX && x < paddleX + paddleWidth) {
+        if (dy > 0 && y + dy > canvas.height - ballRadius - paddleHeight) {
+            var diff = x - (paddleX + paddleWidth / 2);
+            dx = diff * 0.2;
+            dy = -dy;
+            bounce.play();
+        }
+    }
+
+    if (y + dy < ballRadius) {
+        dy = -dy;
+        bounce.play();
+    } else if (y + dy > canvas.height - ballRadius) {
+        if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+            dx = leftPressed ? -3 : rightPressed ? 3 : dx;
+            bounce.play();
+        } else {
+            lives--;
+            if (!lives) {
+                gameover.play();
+                alert("GAME OVER");
+                document.location.reload();
+                clearInterval(interval);
+            } else {
+                x = canvas.width / 2;
+                y = canvas.height - 30;
+                dx = 3;
+                dy = -3;
+                paddleX = (canvas.width - paddleWidth) / 2;
+            }
+        }
+    }
+
+    if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
+        dx = -dx;
+        bounce.play();
     }
 }
 
