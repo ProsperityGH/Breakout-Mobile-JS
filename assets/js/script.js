@@ -31,7 +31,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
 var score = 0;
-var lives = 99;
+var lives = 3;
 
 var paused = false;
 
@@ -109,9 +109,11 @@ function collisionDetection() {
                     bounce.play();
                     if (score === brickRowCount * brickColumnCount) {
                         win.play();
-                        alert("YOU WIN, CONGRATULATIONS!!!!");
-                        document.location.reload();
-                        clearInterval(interval);
+                        setTimeout(() => {
+                            alert("YOU WIN, CONGRATULATIONS!!!!");
+                            document.location.reload();
+                            clearInterval(interval);
+                        }, 1);
                     }
                 }
             }
@@ -139,7 +141,7 @@ function collisionDetection() {
             lives--;
             if (!lives) {
                 gameover.play();
-                alert("GAME OVER");
+                alert("GAME OVER | YOUR SCORE: " + score);	
                 document.location.reload();
                 clearInterval(interval);
             } else {
