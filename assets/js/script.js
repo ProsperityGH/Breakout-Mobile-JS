@@ -1,6 +1,12 @@
 var canvas = document.getElementById("breakoutCanvas");
 var ctx = canvas.getContext("2d");
 
+const width = "320";
+const height = "480";
+
+canvas.width = width;
+canvas.height = height;
+
 const phoneDiv = document.querySelector(".phone");
 
 const win = new Audio('../assets/mp3/win.mp3');
@@ -22,8 +28,8 @@ var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 5;
-var brickColumnCount = 3;
+var brickRowCount = 1;
+var brickColumnCount = 1;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -110,11 +116,25 @@ function collisionDetection() {
                     if (score === brickRowCount * brickColumnCount) {
                         win.play();
                         setTimeout(() => {
-                            alert("YOU WIN, CONGRATULATIONS!!!!");
-                            document.location.reload();
+                            const canvas2 = document.querySelector('canvas');
+                            const message2 = document.createElement('div');
+                            paused = true;
+                            message2.style.font = '20px Arial';
+                            message2.textContent = 'You win, click/tap to replay';
+                            message2.style.position = 'absolute';
+                            message2.style.top = '0';
+                            message2.style.width = '100%';
+                            message2.style.height = '100%';
+                            message2.style.display = 'flex';
+                            message2.style.alignItems = 'center';
+                            message2.style.justifyContent = 'center';
+                            canvas2.parentNode.appendChild(message2, canvas2);
+                            message2.addEventListener('click', () => {
+                                document.location.reload();
+                            });
                             clearInterval(interval);
                         }, 1);
-                    }
+                    }                    
                 }
             }
         }
