@@ -53,7 +53,6 @@ canvas {
     color: white;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    font-family: arial;
 }
   
 #text > h2 {
@@ -86,14 +85,11 @@ button {
     cursor: pointer;
 }
 @media only screen and (max-width: 400px){
-    // .phone {
-    //     height: 0px;
-    // }
+    .phone {
+        height: 0px;
+    }
 
-    button {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
+    #help {
+        
     }
 }

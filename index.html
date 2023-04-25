@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breakout JavaScript</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="manifest" href="manifest.json">
     <script src="assets/js/script.js" defer></script>
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then(() => console.log("Service Worker Registered"))
+          .catch(e => console.log(e));
+      }
+    </script>
 </head>
 <body>
     <div class="phone">
