@@ -12,11 +12,11 @@ self.addEventListener('install', function(e) {
       // If the request for any of these resources fails, _none_ of the resources will be
       // added to the cache.
       return cache.addAll([
-        'https://prosperous.dev/breakout/',
-        'https://prosperous.dev/breakout/index.html',
-        'https://prosperous.dev/breakout/assets/css/style.css',
-        'https://prosperous.dev/breakout/assets/js/script.js',
-        'https://prosperous.dev/breakout/manifest.json',
+        'https://prosperity.dev/breakout/',
+        'https://prosperity.dev/breakout/index.html',
+        'https://prosperity.dev/breakout/assets/css/style.css',
+        'https://prosperity.dev/breakout/assets/js/script.js',
+        'https://prosperity.dev/breakout/manifest.json',
       ]);
     })
   );

@@ -37,7 +37,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
 var score = 0;
-var lives = 3;
+var lives = 99;
 
 var paused = false;
 
@@ -226,6 +226,9 @@ function drawBricks() {
     }
 }
 
+let deltaTime = 0;    
+let lu = Date.now();
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
@@ -234,6 +237,8 @@ function draw() {
     drawScore();
     drawLives();
     collisionDetection();
+    deltaTime = (Date.now()-lu)/16;
+    lu = Date.now();
 
     if (paused) {
         requestAnimationFrame(draw);
@@ -278,8 +283,8 @@ function draw() {
         paddleX -= 4;
     }
     
-    x += dx;
-    y += dy;
+    x += dx * deltaTime;
+    y += dy * deltaTime;
     requestAnimationFrame(draw);
 }
 
