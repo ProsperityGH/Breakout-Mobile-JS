@@ -91,6 +91,13 @@ button {
         width: auto;
     }
 
+    button {
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -10px;
+    }
+
     #help {
         
     }
