@@ -41,14 +41,31 @@ var lives = 99;
 
 var paused = false;
 
-function on() {
+function overlayon() {
     document.getElementById("overlay").style.display = "block";
     paused = true;
 }
 
-function off() {
+function warningon() {
+    document.getElementById("warning").style.display = "block";
+    paused = true;
+}
+
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") {
+      warningon();
+    }
+  });
+
+function overlayoff() {
     document.getElementById("overlay").style.display = "none";
     paused = false;
+}
+
+function warningoff() {
+    document.getElementById("warning").style.display = "none";
+    paused = false;
+    document.location.reload();
 }
 
 var bricks = [];

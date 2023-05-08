@@ -19,8 +19,8 @@
 <body>
     <div class="phone">
         <div id="help">
-            <div id="overlay" onclick="off()">
-              <div id="text">
+            <div id="overlay" onclick="overlayoff()">
+              <div class="text">
                 <h2>Controls</h2>
                 <p>
                   <span>Phone</span> - To move the paddle on a Mobile Phone, Tilt your mobile device to the left or right. <br>
@@ -29,12 +29,21 @@
                 </p>
               </div>
             </div>
-            
+              <div id="warning" onclick="warningoff()">
+                <div class="warningtext">
+                  <h2>Warning</h2>
+                  <p>
+                    Please do not change windows or apps while playing the game.                   
+                  </p>
+                  <p>
+                    The game will now restart.
+                  </p>
+                </div>
+              </div>
             <div style="margin-top: -40px;">
-              <button onclick="on()" title="controls"></button>
+              <button onclick="overlayon()" title="controls"></button>
             </div>
         </div>
-        <!-- <canvas id="breakoutCanvas" width="320" height="480"></canvas> -->
         <canvas id="breakoutCanvas"></canvas>
     </div>
 </body> 
