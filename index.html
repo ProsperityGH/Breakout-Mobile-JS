@@ -19,7 +19,7 @@
 <body>
     <div class="phone">
         <div id="help">
-            <div id="overlay" onclick="overlayoff()">
+            <div id="overlay" onclick="overlayOff()">
               <div class="text">
                 <h2>Controls</h2>
                 <p>
@@ -29,19 +29,19 @@
                 </p>
               </div>
             </div>
-              <div id="warning" onclick="warningoff()">
+              <div id="warning" onclick="warningOff()">
                 <div class="warningtext">
                   <h2>Warning</h2>
                   <p>
                     Please do not change windows or apps while playing the game.                   
                   </p>
                   <p>
-                    The game will now restart.
+                    The game will when you click/tap this screen.
                   </p>
                 </div>
               </div>
             <div style="margin-top: -40px;">
-              <button onclick="overlayon()" title="controls"></button>
+              <button onclick="overlayOn()" title="controls"></button>
             </div>
         </div>
         <canvas id="breakoutCanvas"></canvas>

@@ -41,28 +41,28 @@ var lives = 99;
 
 var paused = false;
 
-function overlayon() {
+function overlayOn() {
     document.getElementById("overlay").style.display = "block";
     paused = true;
 }
 
-function warningon() {
+function warningOn() {
     document.getElementById("warning").style.display = "block";
     paused = true;
 }
 
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === "hidden") {
-      warningon();
+      warningOn();
     }
   });
 
-function overlayoff() {
+function overlayOff() {
     document.getElementById("overlay").style.display = "none";
     paused = false;
 }
 
-function warningoff() {
+function warningOff() {
     document.getElementById("warning").style.display = "none";
     paused = false;
     document.location.reload();
