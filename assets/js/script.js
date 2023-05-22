@@ -28,8 +28,8 @@ var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 5;
-var brickColumnCount = 3;
+var brickRowCount = 1;
+var brickColumnCount = 1;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -78,6 +78,14 @@ for (let c = 0; c < brickColumnCount; c++) {
 
 if (window.innerWidth < 331) {
     phoneDiv.classList.remove("phone");
+}
+
+function resetBricks(){
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            bricks[c][r].status = 1;
+        }
+    }
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -130,27 +138,36 @@ function collisionDetection() {
                     b.status = 0;
                     score++;
                     bounce.play();
-                    if (score === brickRowCount * brickColumnCount) {
+                    if (score % (brickRowCount * brickColumnCount) == 0) {
                         win.play();
-                        setTimeout(() => {
-                            const canvas2 = document.querySelector('canvas');
-                            const message2 = document.createElement('div');
-                            paused = true;
-                            message2.style.font = '20px Arial';
-                            message2.textContent = 'You win, click/tap to replay';
-                            message2.style.position = 'absolute';
-                            message2.style.top = '0';
-                            message2.style.width = '100%';
-                            message2.style.height = '100%';
-                            message2.style.display = 'flex';
-                            message2.style.alignItems = 'center';
-                            message2.style.justifyContent = 'center';
-                            canvas2.parentNode.appendChild(message2, canvas2);
-                            message2.addEventListener('click', () => {
-                                document.location.reload();
-                            });
-                            clearInterval(interval);
-                        }, 1);
+                        const canvas2 = document.querySelector('canvas');
+                        const message2 = document.createElement('div');
+                        message2.id = 'message2';
+                        paused = true;
+                        message2.style.font = '20px Arial';
+                        message2.textContent = 'You win, click/tap to replay';
+                        message2.style.position = 'absolute';
+                        message2.style.top = '0';
+                        message2.style.width = '100%';
+                        message2.style.height = '100%';
+                        message2.style.display = 'flex';
+                        message2.style.alignItems = 'center';
+                        message2.style.justifyContent = 'center';
+                        canvas2.parentNode.appendChild(message2, canvas2);
+                        message2.addEventListener('click', () => {
+                            message2.parentNode.removeChild(message2);
+                            resetBricks();
+                            x = canvas.width / 2;
+                            y = canvas.height - 30;
+                            dx = 3;
+                            dy = -3;
+                            paused = false;
+                            paddleWidth = paddleWidth - 10;
+                            if (paddleWidth < 30) {
+                                paddleWidth = 30;
+                            }
+                            ballRadius = ballRadius + 0.75;
+                        });
                     }                    
                 }
             }
