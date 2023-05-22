@@ -146,6 +146,7 @@ function collisionDetection() {
                         message2.id = 'message2';
                         paused = true;
                         message2.style.font = '19px Arial';
+                        message2.style.color = '#4F6E22';
                         message2.textContent = `You won level ${level}, Click/tap to level up`;
                         message2.style.position = 'absolute';
                         message2.style.top = '0';
@@ -197,9 +198,27 @@ function collisionDetection() {
             lives--;
             if (!lives) {
                 gameover.play();
-                alert("GAME OVER | YOUR SCORE: " + score);	
-                document.location.reload();
-                clearInterval(interval);
+                setTimeout(() => {
+                    const canvas2 = document.querySelector('canvas');
+                    const message2 = document.createElement('div');
+                    paused = true;
+                    lives = 0;
+                    message2.style.font = '20px Arial';
+                    message2.style.color = '#4F6E22';
+                    message2.textContent = 'GAME OVER!!! Click/tap to restart';
+                    message2.style.position = 'absolute';
+                    message2.style.top = '0';
+                    message2.style.width = '100%';
+                    message2.style.height = '100%';
+                    message2.style.display = 'flex';
+                    message2.style.alignItems = 'center';
+                    message2.style.justifyContent = 'center';
+                    canvas2.parentNode.appendChild(message2, canvas2);
+                    message2.addEventListener('click', () => {
+                        document.location.reload();
+                    });
+                    clearInterval(interval);
+                }, 1);
             } else {
                 x = canvas.width / 2;
                 y = canvas.height - 30;
