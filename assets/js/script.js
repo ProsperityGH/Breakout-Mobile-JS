@@ -37,6 +37,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
 var score = 0;
+var level = 1;
 var lives = 99;
 
 var paused = false;
@@ -144,8 +145,8 @@ function collisionDetection() {
                         const message2 = document.createElement('div');
                         message2.id = 'message2';
                         paused = true;
-                        message2.style.font = '20px Arial';
-                        message2.textContent = 'You win, click/tap to replay';
+                        message2.style.font = '19px Arial';
+                        message2.textContent = `You won level ${level}, Click/tap to level up`;
                         message2.style.position = 'absolute';
                         message2.style.top = '0';
                         message2.style.width = '100%';
@@ -162,6 +163,7 @@ function collisionDetection() {
                             dx = 3;
                             dy = -3;
                             paused = false;
+                            level = level + 1;
                             paddleWidth = paddleWidth - 10;
                             if (paddleWidth < 30) {
                                 paddleWidth = 30;
@@ -220,6 +222,12 @@ function drawScore() {
     ctx.fillText(`Score: ${score}`, 8, 20);
 }
 
+function drawLevel() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText(`Level: ${level}`, 135, 20);
+}
+
 function drawLives() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
@@ -269,6 +277,7 @@ function draw() {
     drawBall();
     drawPaddle();
     drawScore();
+    drawLevel();
     drawLives();
     collisionDetection();
     deltaTime = (Date.now()-lu)/16;
