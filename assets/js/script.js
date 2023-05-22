@@ -169,7 +169,11 @@ function collisionDetection() {
                             if (paddleWidth < 30) {
                                 paddleWidth = 30;
                             }
-                            ballRadius = ballRadius + 0.75;
+                            
+                            ballRadius = ballRadius - 0.75;
+                            if (ballRadius < 5) {
+                                ballRadius = 5;
+                            }
                         });
                     }                    
                 }
