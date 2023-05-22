@@ -8,7 +8,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #293E6A;
+    background-color: #4F6E22;
     overflow-x: hidden;
 }
 .phone {
@@ -23,7 +23,7 @@ body {
     border-radius: 50px;
 }
 canvas {
-    background-color: white;
+    background-color: #FCEFAE;
     display: block;
     margin: 0 auto;
     border-radius: 15px;
@@ -99,9 +99,9 @@ canvas {
 }
   
 button {
-    // background-color: var(--light-gray);
+    background-color: #FCEFAE;
     background-size: cover;
-    box-shadow: 0px 0px 10px 1px white;
+    box-shadow: 0px 0px 10px 1px #FCEFAE;
     width: 20px;
     height: 20px;
     border-radius: 100px;
@@ -131,9 +131,5 @@ button {
         right: 50%;
         margin-left: -10px;
         margin-bottom: 20px;
-    }
-
-    #help {
-        
     }
 }

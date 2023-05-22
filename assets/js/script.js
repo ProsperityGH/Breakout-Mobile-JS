@@ -28,8 +28,8 @@ var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 1;
-var brickColumnCount = 1;
+var brickRowCount = 5;
+var brickColumnCount = 3;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -134,12 +134,12 @@ function collisionDetection() {
         for (let r = 0; r < brickRowCount; r++) {
             var b = bricks[c][r];
             if (b.status === 1) {
-                if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                if (x + ballRadius > b.x && x - ballRadius < b.x + brickWidth && y + ballRadius > b.y && y - ballRadius < b.y + brickHeight) {
                     dy = -dy;
                     b.status = 0;
                     score++;
                     bounce.play();
-                    if (score % (brickRowCount * brickColumnCount) == 0) {
+                    if (score % (brickRowCount * brickColumnCount) === 0) {
                         win.play();
                         const canvas2 = document.querySelector('canvas');
                         const message2 = document.createElement('div');
@@ -218,26 +218,26 @@ function collisionDetection() {
 
 function drawScore() {
     ctx.font = "16px sans-serif";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#4F6E22";
     ctx.fillText(`Score: ${score}`, 8, 20);
 }
 
 function drawLevel() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#4F6E22";
     ctx.fillText(`Level: ${level}`, 135, 20);
 }
 
 function drawLives() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#4F6E22";
     ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
 }
 
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#EB2114";
     ctx.fill();
     ctx.closePath();
 }
@@ -245,7 +245,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#EB2114";
     ctx.fill();
     ctx.closePath();
 }
@@ -260,7 +260,7 @@ function drawBricks() {
                 bricks[c][r].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = "#0095DD";
+                ctx.fillStyle = "#FC7E19";
                 ctx.fill();
                 ctx.closePath();
             }
