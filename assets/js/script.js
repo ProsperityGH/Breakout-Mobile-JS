@@ -28,8 +28,8 @@ var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 5;
-var brickColumnCount = 3;
+var brickRowCount = 1;
+var brickColumnCount = 1;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -37,6 +37,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
 var score = 0;
+var bricksVisible;
 var level = 1;
 var lives = 3;
 
@@ -76,15 +77,19 @@ for (let c = 0; c < brickColumnCount; c++) {
         bricks[c][r] = { x: 0, y: 0, status: 1};
     }
 }
+bricksVisible = brickRowCount * brickColumnCount;
 
 if (window.innerWidth < 331) {
     phoneDiv.classList.remove("phone");
 }
 
 function resetBricks(){
+    bricksVisible = brickRowCount * brickColumnCount;
+    bricks = [];
     for (let c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
         for (let r = 0; r < brickRowCount; r++) {
-            bricks[c][r].status = 1;
+            bricks[c][r] = { x: 0, y: 0, status: 1};
         }
     }
 }
@@ -137,9 +142,10 @@ function collisionDetection() {
                 if (x + ballRadius > b.x && x - ballRadius < b.x + brickWidth && y + ballRadius > b.y && y - ballRadius < b.y + brickHeight) {
                     dy = -dy;
                     b.status = 0;
+                    bricksVisible--;
                     score++;
                     bounce.play();
-                    if (score % (brickRowCount * brickColumnCount) === 0) {
+                    if (bricksVisible === 0) {
                         win.play();
                         const canvas2 = document.querySelector('canvas');
                         const message2 = document.createElement('div');
@@ -158,7 +164,13 @@ function collisionDetection() {
                         canvas2.parentNode.appendChild(message2, canvas2);
                         message2.addEventListener('click', () => {
                             message2.parentNode.removeChild(message2);
+                            
+                            brickRowCount++;
                             resetBricks();
+                            if (brickRowCount > 6) {
+                                brickRowCount = 6;
+                            }
+                            console.log(brickRowCount);
                             x = canvas.width / 2;
                             y = canvas.height - 30;
                             dx = 3;

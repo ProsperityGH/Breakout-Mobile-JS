@@ -46,7 +46,7 @@ canvas {
 .text {
     width: 50%;
     height: 50%;
-    background-color: rgb(34, 33, 41);
+    background-color: rgb(44, 46, 35);
     position: absolute;
     border-radius: 5px;
     font-family: sans-serif;
@@ -60,7 +60,7 @@ canvas {
 .warningtext {
     width: 50%;
     height: 50%;
-    background-color: rgb(34, 33, 41);
+    background-color: rgb(44, 46, 35);
     position: absolute;
     border-radius: 5px;
     font-family: sans-serif;
@@ -86,7 +86,7 @@ canvas {
 }
 
 .text > p > span, .warningtext > p > span {
-  color: rgb(242, 48, 48);
+  color: #6D992B;
 }
 
 .warningtext > p {
