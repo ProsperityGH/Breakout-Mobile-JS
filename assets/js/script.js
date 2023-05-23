@@ -28,8 +28,8 @@ var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 1;
-var brickColumnCount = 1;
+var brickRowCount = 3;
+var brickColumnCount = 3;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -164,28 +164,33 @@ function collisionDetection() {
                         canvas2.parentNode.appendChild(message2, canvas2);
                         message2.addEventListener('click', () => {
                             message2.parentNode.removeChild(message2);
-                            
+                            brickHeight -= 3;
+                            brickHeight = (brickHeight < 5) ? 5 : brickHeight;
+
+                            brickWidth = (width - 30*2 - 10 * (brickColumnCount - 1)) / brickColumnCount;
+
                             brickRowCount++;
                             resetBricks();
-                            if (brickRowCount > 6) {
-                                brickRowCount = 6;
-                            }
-                            console.log(brickRowCount);
+                            brickRowCount = (brickRowCount > 6) ? 6 : brickRowCount;
+
+                            brickColumnCount++;
+                            resetBricks();
+                            brickColumnCount = (brickColumnCount > 6) ? 6 : brickColumnCount;
+
                             x = canvas.width / 2;
                             y = canvas.height - 30;
+
                             dx = 3;
                             dy = -3;
+
                             paused = false;
-                            level = level + 1;
-                            paddleWidth = paddleWidth - 10;
-                            if (paddleWidth < 30) {
-                                paddleWidth = 30;
-                            }
+                            level++;
+
+                            paddleWidth -= 3;;
+                            paddleWidth = (paddleWidth < 30) ? 30 : paddleWidth;
                             
-                            ballRadius = ballRadius - 0.75;
-                            if (ballRadius < 5) {
-                                ballRadius = 5;
-                            }
+                            ballRadius -= 0.75;
+                            ballRadius = (ballRadius < 5) ? 5 : ballRadius;
                         });
                     }                    
                 }
@@ -286,6 +291,7 @@ function drawPaddle() {
 }
 
 function drawBricks() {
+    brickWidth = (width - 30*2 - 10 * (brickColumnCount - 1)) / brickColumnCount;
     for (var c=0; c<brickColumnCount; c++) {
         for (var r=0; r<brickRowCount; r++) {
             if (bricks[c][r].status === 1) {
@@ -365,5 +371,4 @@ function draw() {
     y += dy * deltaTime;
     requestAnimationFrame(draw);
 }
-
 draw();
