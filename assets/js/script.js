@@ -165,17 +165,17 @@ function collisionDetection() {
                         message2.addEventListener('click', () => {
                             message2.parentNode.removeChild(message2);
                             brickHeight -= 3;
-                            brickHeight = (brickHeight < 5) ? 5 : brickHeight;
+                            brickHeight = (brickHeight < 7) ? 7 : brickHeight;
 
                             brickWidth = (width - 30*2 - 10 * (brickColumnCount - 1)) / brickColumnCount;
 
                             brickRowCount++;
                             resetBricks();
-                            brickRowCount = (brickRowCount > 6) ? 6 : brickRowCount;
+                            brickRowCount = (brickRowCount > 5) ? 5 : brickRowCount;
 
                             brickColumnCount++;
                             resetBricks();
-                            brickColumnCount = (brickColumnCount > 6) ? 6 : brickColumnCount;
+                            brickColumnCount = (brickColumnCount > 5) ? 5 : brickColumnCount;
 
                             x = canvas.width / 2;
                             y = canvas.height - 30;
@@ -186,7 +186,7 @@ function collisionDetection() {
                             paused = false;
                             level++;
 
-                            paddleWidth -= 3;;
+                            paddleWidth -= 3;
                             paddleWidth = (paddleWidth < 30) ? 30 : paddleWidth;
                             
                             ballRadius -= 0.75;
