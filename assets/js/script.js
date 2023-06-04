@@ -192,7 +192,56 @@ function collisionDetection() {
                             ballRadius -= 0.75;
                             ballRadius = (ballRadius < 5) ? 5 : ballRadius;
                         });
-                    }                    
+                    }
+                    
+                    if (score === 9) {
+                        win.play();
+                        const canvas2 = document.querySelector('canvas');
+                        const message2 = document.createElement('div');
+                        message2.id = 'message2';
+                        paused = true;
+                        message2.style.font = '19px Arial';
+                        message2.style.color = '#4F6E22';
+                        message2.textContent = `You won level ${level}, Click/tap to level up`;
+                        message2.style.position = 'absolute';
+                        message2.style.top = '0';
+                        message2.style.width = '100%';
+                        message2.style.height = '100%';
+                        message2.style.display = 'flex';
+                        message2.style.alignItems = 'center';
+                        message2.style.justifyContent = 'center';
+                        canvas2.parentNode.appendChild(message2, canvas2);
+                        message2.addEventListener('click', () => {
+                            message2.parentNode.removeChild(message2);
+                            brickHeight -= 3;
+                            brickHeight = (brickHeight < 7) ? 7 : brickHeight;
+
+                            brickWidth = (width - 30*2 - 10 * (brickColumnCount - 1)) / brickColumnCount;
+
+                            brickRowCount++;
+                            resetBricks();
+                            brickRowCount = (brickRowCount > 5) ? 5 : brickRowCount;
+
+                            brickColumnCount++;
+                            resetBricks();
+                            brickColumnCount = (brickColumnCount > 5) ? 5 : brickColumnCount;
+
+                            x = canvas.width / 2;
+                            y = canvas.height - 30;
+
+                            dx = 3;
+                            dy = -3;
+
+                            paused = false;
+                            level++;
+
+                            paddleWidth -= 3;
+                            paddleWidth = (paddleWidth < 30) ? 30 : paddleWidth;
+                            
+                            ballRadius -= 0.75;
+                            ballRadius = (ballRadius < 5) ? 5 : ballRadius;
+                        });
+                    }
                 }
             }
         }
