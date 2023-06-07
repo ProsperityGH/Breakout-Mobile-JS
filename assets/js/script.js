@@ -9,9 +9,13 @@ canvas.height = height;
 
 const phoneDiv = document.querySelector('.phone');
 
-const win = new Audio('/assets/mp3/win.mp3');
-const bounce = new Audio('/assets/mp3/bounce.wav');
-const gameover = new Audio('/assets/mp3/game_over.wav');
+const winUrl = 'https://prospergc.github.io/win.mp3';
+const bounceUrl = 'https://prospergc.github.io/bounce.wav';
+const gameoverUrl = 'https://prospergc.github.io/game_over.wav';
+
+const win = new Audio(winUrl);
+const bounce = new Audio(bounceUrl);
+const gameover = new Audio(gameoverUrl);
 
 var ballRadius = 10;
 
