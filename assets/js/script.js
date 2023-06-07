@@ -9,9 +9,9 @@ canvas.height = height;
 
 const phoneDiv = document.querySelector('.phone');
 
-const win = new Audio('../assets/mp3/win.mp3');
-const bounce = new Audio('../assets/mp3/bounce.wav');
-const gameover = new Audio('../assets/mp3/game_over.wav');
+const win = new Audio('/assets/mp3/win.mp3');
+const bounce = new Audio('/assets/mp3/bounce.wav');
+const gameover = new Audio('/assets/mp3/game_over.wav');
 
 var ballRadius = 10;
 
