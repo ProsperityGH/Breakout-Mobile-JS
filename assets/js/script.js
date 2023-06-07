@@ -152,11 +152,7 @@ function collisionDetection() {
           console.log('bricksVisible', bricksVisible);
 
           if (bricksVisible === 0) {
-            console.log('YOOOOOOO');
-
-            // check of level 5 is, want dan ben je klaar: game uitgespeeld!
             if (level === 5) {
-              console.log('okeeeee, we zijn bij het eindscherm');
               const canvas2 = document.querySelector('canvas');
               const message2 = document.createElement('div');
               message2.id = 'message2';
@@ -174,7 +170,6 @@ function collisionDetection() {
               message2.style.justifyContent = 'center';
               canvas2.parentNode.appendChild(message2, canvas2);
               message2.addEventListener('click', () => {
-                console.log('click!!!!');
                 message2.parentNode.removeChild(message2);
                 document.location.reload();
               });
