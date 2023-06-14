@@ -384,7 +384,6 @@ function draw() {
       lives--;
       if (!lives) {
         gameover.play();
-        alert('GAME OVER!!! Your score: ' + score);
         document.location.reload();
       } else {
         x = canvas.width / 2;
